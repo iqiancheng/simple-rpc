@@ -41,12 +41,6 @@ public class Client {
         proxy.say("dubbo");
     }
 
-    public static void main(String[] args) {
-        Client client = new Client("localhost", 9527);
-        HeyService proxy = client.getProxy(HeyService.class);
-        proxy.say("dubbo");
-    }
-
     public <T> T getProxy(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass},
                 new InvocationHandler() {
