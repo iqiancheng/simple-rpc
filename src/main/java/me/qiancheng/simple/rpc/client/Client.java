@@ -37,16 +37,17 @@ public class Client {
 
     public static void main(String[] args) {
         Client client = new Client("localhost", 9527);
-        HeyService invoker = client.getInvoker(HeyService.class);
-        invoker.say("dubbo");
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        HeyService proxy = client.getProxy(HeyService.class);
+        proxy.say("dubbo");
     }
 
-    public <T> T getInvoker(Class<T> interfaceClass) {
+    public static void main(String[] args) {
+        Client client = new Client("localhost", 9527);
+        HeyService proxy = client.getProxy(HeyService.class);
+        proxy.say("dubbo");
+    }
+
+    public <T> T getProxy(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass},
                 new InvocationHandler() {
                     public Object invoke(Object proxy, Method method, Object[] arguments) throws Throwable {
