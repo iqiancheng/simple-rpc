@@ -1,5 +1,5 @@
 # simple-rpc
-Simplify Remote Procedure Call
+Demo of Simplified Remote-Procedure-Call
 
 ### 如何启动
 1. 启动服务端：直接运行 `Main.java` 的 `main` 方法
